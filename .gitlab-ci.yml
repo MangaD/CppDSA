@@ -1,0 +1,70 @@
+stages:
+  - build
+  - test
+  - benchmark
+
+# --------------------------
+# C++ Jobs
+# --------------------------
+cpp_build:
+  stage: build
+  image: gcc:latest
+  script:
+    - apt-get update && apt-get install -y cmake valgrind
+    - cd cpp
+    - mkdir -p build && cd build
+    - cmake .. -DCMAKE_BUILD_TYPE=Release
+    - make -j$(nproc)
+  artifacts:
+    paths:
+      - cpp/build
+
+cpp_test:
+  stage: test
+  image: gcc:latest
+  script:
+    - cd cpp/build
+    - ctest --output-on-failure
+
+cpp_benchmark:
+  stage: benchmark
+  image: gcc:latest
+  script:
+    - cd cpp/build
+    - echo "Running vector_benchmark"
+    - ./vector_benchmark
+    - echo "Running list_benchmark"
+    - ./list_benchmark
+    - echo "Running sort_benchmark"
+    - ./sort_benchmark
+
+# --------------------------
+# Java Jobs
+# --------------------------
+java_build:
+  stage: build
+  image: maven:3.8.6-openjdk-17
+  script:
+    - cd java
+    - mvn clean install
+  artifacts:
+    paths:
+      - java/target
+
+java_test:
+  stage: test
+  image: maven:3.8.6-openjdk-17
+  script:
+    - cd java
+    - mvn test
+
+# --------------------------
+# Python Jobs
+# --------------------------
+python_test:
+  stage: test
+  image: python:3.9
+  script:
+    - cd python
+    - pip install -r requirements.txt
+    - pytest --maxfail=1 --disable-warnings -q

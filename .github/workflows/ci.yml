@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Python (Conan is a Python package)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Cache the Conan cache directory (~/.conan2)
+      - name: Cache Conan 2
+        uses: actions/cache@v4
+        with:
+          path: ~/.conan2
+          key: ${{ runner.os }}-conan2-${{ hashFiles('conanfile.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-conan2-
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ valgrind pipx
+
+      - name: Install Conan via pipx
+        run: |
+          pipx ensurepath
+          pipx install conan
+
+      - name: Detect Conan profile
+        run: conan profile detect --force
+
+      # Optionally cache the build directory to speed up repeated builds.
+      - name: Cache build directory
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: ${{ runner.os }}-build-${{ hashFiles('CMakeLists.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Configure CMake
+        run: |
+          mkdir -p build && cd build
+          # https://github.com/conan-io/conan/issues/4221
+          conan install .. --build=missing -of . -s build_type=RelWithDebInfo
+          #cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
+          #cmake .. --preset conan-release
+          cmake .. --preset conan-relwithdebinfo
+
+      - name: Build the project
+        run: |
+          cd build
+          #make -j$(nproc)
+          cmake --build . --config RelWithDebInfo -- -j$(nproc)
+
+      - name: Run unit tests
+        run: |
+          cd build
+          ctest --output-on-failure
+
+      # Calls your executables with `|| true` so that even if one fails the job doesn’t stop.
+      - name: Run benchmarks
+        run: |
+          cd build
+          echo "Running vector_benchmark"
+          ./vector_benchmark || true
+          echo "Running map_benchmark"
+          ./map_benchmark || true
+          echo "Running unordered_map_benchmark"
+          ./unordered_map_benchmark || true
+          echo "Running deque_benchmark"
+          ./deque_benchmark || true
+
+ 
+  deploy_docs:
+    name: Generate and Deploy Documentation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake doxygen
+
+      - name: Configure Project for Documentation
+        run: cmake -S . -B build -DBUILD_SOURCE=OFF
+
+      - name: Generate Doxygen Documentation
+        run: cmake --build build --target doxygen
+
+      # In the repository settings, go to Actions -> General -> Workflow permissions
+      # and enable Read and write permissions.
+      # After the workflow runs successfully, go to Settings -> Pages -> Branch
+      # select `gh-pages` and click "Save".
+      - name: Deploy Documentation to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/doxygen/html
