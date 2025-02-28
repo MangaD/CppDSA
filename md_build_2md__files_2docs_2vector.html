@@ -113,34 +113,34 @@ $(document).ready(function(){initNavTree('md_build_2md__files_2docs_2vector.html
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md94">Overview</a></li>
-<li class="level1"><a href="#autotoc_md95">Key Characteristics</a></li>
-<li class="level1"><a href="#autotoc_md96">Memory Management and Growth Strategy</a><ul><li class="level2"><a href="#autotoc_md97">Capacity vs. Size</a></li>
-<li class="level2"><a href="#autotoc_md98">Growth Strategy</a></li>
+<ul><li class="level1"><a href="#autotoc_md92">Overview</a></li>
+<li class="level1"><a href="#autotoc_md93">Key Characteristics</a></li>
+<li class="level1"><a href="#autotoc_md94">Memory Management and Growth Strategy</a><ul><li class="level2"><a href="#autotoc_md95">Capacity vs. Size</a></li>
+<li class="level2"><a href="#autotoc_md96">Growth Strategy</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md99">Detailed Usage</a><ul><li class="level2"><a href="#autotoc_md100">Construction and Initialization</a></li>
-<li class="level2"><a href="#autotoc_md101">Access and Modification</a></li>
+<li class="level1"><a href="#autotoc_md97">Detailed Usage</a><ul><li class="level2"><a href="#autotoc_md98">Construction and Initialization</a></li>
+<li class="level2"><a href="#autotoc_md99">Access and Modification</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md102">Performance Considerations</a><ul><li class="level2"><a href="#autotoc_md103">Advantages of Contiguous Storage</a></li>
-<li class="level2"><a href="#autotoc_md104">Costs of Reallocation</a></li>
+<li class="level1"><a href="#autotoc_md100">Performance Considerations</a><ul><li class="level2"><a href="#autotoc_md101">Advantages of Contiguous Storage</a></li>
+<li class="level2"><a href="#autotoc_md102">Costs of Reallocation</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md105">Advanced Topics</a><ul><li class="level2"><a href="#autotoc_md106">Iterator Invalidation</a></li>
-<li class="level2"><a href="#autotoc_md107">Custom Allocators</a></li>
-<li class="level2"><a href="#autotoc_md108">Exception Safety and Strong Guarantees</a></li>
-<li class="level2"><a href="#autotoc_md109">Optimizing Common Patterns</a></li>
+<li class="level1"><a href="#autotoc_md103">Advanced Topics</a><ul><li class="level2"><a href="#autotoc_md104">Iterator Invalidation</a></li>
+<li class="level2"><a href="#autotoc_md105">Custom Allocators</a></li>
+<li class="level2"><a href="#autotoc_md106">Exception Safety and Strong Guarantees</a></li>
+<li class="level2"><a href="#autotoc_md107">Optimizing Common Patterns</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md110">Conclusion</a></li>
+<li class="level1"><a href="#autotoc_md108">Conclusion</a></li>
 </ul>
 </div>
-<div class="textblock"><p><a class="anchor" id="autotoc_md93"></a></p>
-<h1><a class="anchor" id="autotoc_md94"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md91"></a></p>
+<h1><a class="anchor" id="autotoc_md92"></a>
 Overview</h1>
 <p><code>std::vector</code> is one of the most fundamental and widely used containers in the C++ Standard Template Library (STL). It provides a dynamic, resizable array with contiguous memory storage, making it ideal for scenarios that require fast random access and cache-friendly data layouts.</p>
-<h1><a class="anchor" id="autotoc_md95"></a>
+<h1><a class="anchor" id="autotoc_md93"></a>
 Key Characteristics</h1>
 <ul>
 <li><b>Dynamic Sizing:</b> <br  />
@@ -152,9 +152,9 @@ Key Characteristics</h1>
 <li><b>Amortized Constant-Time Insertion at End:</b> <br  />
  The <code>push_back</code> operation is generally very efficient—amortized O(1)—as the vector grows its capacity geometrically.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md96"></a>
+<h1><a class="anchor" id="autotoc_md94"></a>
 Memory Management and Growth Strategy</h1>
-<h2><a class="anchor" id="autotoc_md97"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 Capacity vs. Size</h2>
 <ul>
 <li><b>Size:</b> <br  />
@@ -162,7 +162,7 @@ Capacity vs. Size</h2>
 <li><b>Capacity:</b> <br  />
  The total number of elements that can be stored in the currently allocated storage. Capacity is always greater than or equal to the size.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md98"></a>
+<h2><a class="anchor" id="autotoc_md96"></a>
 Growth Strategy</h2>
 <p>When a vector runs out of capacity, it must allocate new storage and copy (or move) the existing elements to the new memory location. Typically, vectors increase their capacity by a factor (commonly 2× the previous capacity) to amortize the cost of reallocations over many insertions.</p>
 <ul>
@@ -171,9 +171,9 @@ Growth Strategy</h2>
 <li><b>Reserve Mechanism:</b> <br  />
  You can manually request a specific capacity using the <code>reserve()</code> method, which pre-allocates memory and minimizes reallocations if the approximate number of elements is known ahead of time.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md99"></a>
+<h1><a class="anchor" id="autotoc_md97"></a>
 Detailed Usage</h1>
-<h2><a class="anchor" id="autotoc_md100"></a>
+<h2><a class="anchor" id="autotoc_md98"></a>
 Construction and Initialization</h2>
 <p><code>std::vector</code> provides several constructors to accommodate different initialization scenarios:</p>
 <ul>
@@ -186,7 +186,7 @@ Construction and Initialization</h2>
 <li><b>Initializer List:</b> <div class="fragment"><div class="line">std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};</div>
 </div><!-- fragment --> Constructs a vector with elements provided by the initializer list.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md101"></a>
+<h2><a class="anchor" id="autotoc_md99"></a>
 Access and Modification</h2>
 <ul>
 <li><b>Element Access:</b><ul>
@@ -225,9 +225,9 @@ Access and Modification</h2>
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md102"></a>
+<h1><a class="anchor" id="autotoc_md100"></a>
 Performance Considerations</h1>
-<h2><a class="anchor" id="autotoc_md103"></a>
+<h2><a class="anchor" id="autotoc_md101"></a>
 Advantages of Contiguous Storage</h2>
 <ul>
 <li><b>Cache Efficiency:</b> <br  />
@@ -235,7 +235,7 @@ Advantages of Contiguous Storage</h2>
 <li><b>Interoperability:</b> <br  />
  The contiguous storage makes it easier to pass vector data to C-style functions that require a pointer to an array.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md104"></a>
+<h2><a class="anchor" id="autotoc_md102"></a>
 Costs of Reallocation</h2>
 <ul>
 <li><b>Reallocation Penalty:</b> <br  />
@@ -243,9 +243,9 @@ Costs of Reallocation</h2>
 <li><b>Iterator Invalidation:</b> <br  />
  Any operation that triggers a reallocation invalidates all pointers, references, and iterators to elements of the vector. This is an important consideration when designing algorithms that rely on persistent iterators.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md105"></a>
+<h1><a class="anchor" id="autotoc_md103"></a>
 Advanced Topics</h1>
-<h2><a class="anchor" id="autotoc_md106"></a>
+<h2><a class="anchor" id="autotoc_md104"></a>
 Iterator Invalidation</h2>
 <p>When elements are inserted or removed, iterators may be invalidated:</p>
 <ul>
@@ -255,7 +255,7 @@ Iterator Invalidation</h2>
  These operations can invalidate iterators at or after the point of modification, even if no reallocation occurs.</li>
 </ul>
 <p>Understanding these rules is crucial for writing robust code that uses iterators.</p>
-<h2><a class="anchor" id="autotoc_md107"></a>
+<h2><a class="anchor" id="autotoc_md105"></a>
 Custom Allocators</h2>
 <p><code>std::vector</code> supports custom allocators, which can be used to control memory allocation strategies:</p>
 <ul>
@@ -272,7 +272,7 @@ Custom Allocators</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md108"></a>
+<h2><a class="anchor" id="autotoc_md106"></a>
 Exception Safety and Strong Guarantees</h2>
 <p><code>std::vector</code> provides a strong exception guarantee for many of its operations:</p>
 <ul>
@@ -281,7 +281,7 @@ Exception Safety and Strong Guarantees</h2>
 <li><b>No-throw Swap:</b> <br  />
  The swap operation is typically no-throw, allowing for efficient transfer of resources between vectors.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md109"></a>
+<h2><a class="anchor" id="autotoc_md107"></a>
 Optimizing Common Patterns</h2>
 <ul>
 <li><b>Pre-allocation:</b> <br  />
@@ -291,7 +291,7 @@ Optimizing Common Patterns</h2>
 <li><b>Emplacement:</b> <br  />
  The <code>emplace_back()</code> function constructs elements in place, avoiding temporary objects and extra copies.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md110"></a>
+<h1><a class="anchor" id="autotoc_md108"></a>
 Conclusion</h1>
 <p><code>std::vector</code> is a versatile and high-performance container that serves as a backbone for many C++ applications. Understanding its internal mechanics—such as dynamic resizing, contiguous storage, iterator invalidation, and custom allocation—enables you to write more efficient and robust code. By carefully managing capacity and using advanced techniques like move semantics and custom allocators, you can optimize <code>std::vector</code> usage for both general-purpose and performance-critical applications. </p>
 </div></div><!-- contents -->

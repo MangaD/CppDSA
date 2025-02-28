@@ -113,35 +113,35 @@ $(document).ready(function(){initNavTree('md_build_2md__files_2docs_2Profiling.h
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#autotoc_md18">Table of Contents</a></li>
-<li class="level1"><a href="#autotoc_md20">Introduction</a></li>
-<li class="level1"><a href="#autotoc_md22">Preparing Your Code for Profiling</a></li>
-<li class="level1"><a href="#autotoc_md24">Profiling with gprof</a><ul><li class="level2"><a href="#autotoc_md25">What is gprof?</a></li>
-<li class="level2"><a href="#autotoc_md26">Setup and Usage</a></li>
+<ul><li class="level1"><a href="#autotoc_md16">Table of Contents</a></li>
+<li class="level1"><a href="#autotoc_md18">Introduction</a></li>
+<li class="level1"><a href="#autotoc_md20">Preparing Your Code for Profiling</a></li>
+<li class="level1"><a href="#autotoc_md22">Profiling with gprof</a><ul><li class="level2"><a href="#autotoc_md23">What is gprof?</a></li>
+<li class="level2"><a href="#autotoc_md24">Setup and Usage</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md28">Profiling with Valgrind (Callgrind)</a><ul><li class="level2"><a href="#autotoc_md29">What is Valgrind/Callgrind?</a></li>
-<li class="level2"><a href="#autotoc_md30">Setup and Usage</a></li>
-<li class="level2"><a href="#autotoc_md31">Analyzing Results with KCachegrind</a></li>
+<li class="level1"><a href="#autotoc_md26">Profiling with Valgrind (Callgrind)</a><ul><li class="level2"><a href="#autotoc_md27">What is Valgrind/Callgrind?</a></li>
+<li class="level2"><a href="#autotoc_md28">Setup and Usage</a></li>
+<li class="level2"><a href="#autotoc_md29">Analyzing Results with KCachegrind</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md33">Profiling with perf (Linux)</a><ul><li class="level2"><a href="#autotoc_md34">What is perf?</a></li>
-<li class="level2"><a href="#autotoc_md35">Setup and Usage</a></li>
-<li class="level2"><a href="#autotoc_md36">Installing perf on WSL2</a></li>
+<li class="level1"><a href="#autotoc_md31">Profiling with perf (Linux)</a><ul><li class="level2"><a href="#autotoc_md32">What is perf?</a></li>
+<li class="level2"><a href="#autotoc_md33">Setup and Usage</a></li>
+<li class="level2"><a href="#autotoc_md34">Installing perf on WSL2</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md38">Debug vs. Release Builds</a></li>
-<li class="level1"><a href="#autotoc_md40">Integrating Profiling and Benchmarking in CI/CD</a><ul><li class="level2"><a href="#autotoc_md41">Current Landscape</a></li>
-<li class="level2"><a href="#autotoc_md42">Example in GitHub Actions</a></li>
+<li class="level1"><a href="#autotoc_md36">Debug vs. Release Builds</a></li>
+<li class="level1"><a href="#autotoc_md38">Integrating Profiling and Benchmarking in CI/CD</a><ul><li class="level2"><a href="#autotoc_md39">Current Landscape</a></li>
+<li class="level2"><a href="#autotoc_md40">Example in GitHub Actions</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#autotoc_md44">Conclusion</a></li>
+<li class="level1"><a href="#autotoc_md42">Conclusion</a></li>
 </ul>
 </div>
-<div class="textblock"><p><a class="anchor" id="autotoc_md16"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md14"></a></p>
 <p>This guide provides a deep dive into several popular profiling tools and techniques used to analyze and optimize C++ code. It covers <b>gprof</b>, <b>Valgrind (Callgrind)</b>, and <b>perf</b>. Additionally, it discusses how to prepare your builds for profiling, the differences between debug and release modes, and considerations for integrating profiling/benchmarking data into CI/CD pipelines.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Table of Contents</h1>
 <ol type="1">
 <li>Introduction</li>
@@ -167,7 +167,7 @@ Table of Contents</h1>
 <li>Conclusion</li>
 </ol>
 <hr  />
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Introduction</h1>
 <p>Profiling is an essential practice for understanding where your program spends its time and identifying performance bottlenecks. Unlike code coverage—which is often reported via services like Codecov or Coveralls—profiling typically requires collecting raw performance data that is then analyzed with specialized tools. Each tool provides different insights:</p>
 <ul>
@@ -176,7 +176,7 @@ Introduction</h1>
 <li><b>perf</b>: Offers a wide range of profiling options on Linux, including sampling-based performance data and live views with <code>perf top</code>.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md20"></a>
 Preparing Your Code for Profiling</h1>
 <p>Before profiling, you need to prepare your build:</p><ul>
 <li><b>Release Mode</b>: Always profile optimized (release mode) builds. This ensures that the performance data reflects real-world usage, as compiler optimizations (like inlining and loop unrolling) are enabled.</li>
@@ -187,15 +187,15 @@ Preparing Your Code for Profiling</h1>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md24"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Profiling with gprof</h1>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 What is gprof?</h2>
 <p><b>gprof</b> is a GNU profiler that collects performance data by instrumenting your executable. It provides:</p><ul>
 <li>A <b>flat profile</b>: Time spent in each function.</li>
 <li>A <b>call graph</b>: Who calls whom and how often.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 Setup and Usage</h2>
 <ol type="1">
 <li><b>Compile with <code>-pg</code></b>:<ul>
@@ -222,15 +222,15 @@ Setup and Usage</h2>
 </li>
 </ol>
 <hr  />
-<h1><a class="anchor" id="autotoc_md28"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 Profiling with Valgrind (Callgrind)</h1>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 What is Valgrind/Callgrind?</h2>
 <p><b>Valgrind</b> is a powerful instrumentation framework that includes the <b>Callgrind</b> tool, which is used for profiling. It provides:</p><ul>
 <li>Detailed call graphs.</li>
 <li>Metrics on function call counts and instruction counts.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Setup and Usage</h2>
 <ol type="1">
 <li><b>Run under Callgrind</b>:<ul>
@@ -246,7 +246,7 @@ Setup and Usage</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Analyzing Results with KCachegrind</h2>
 <ul>
 <li><b>KCachegrind</b>: A graphical viewer for Callgrind data.<ul>
@@ -258,16 +258,16 @@ Analyzing Results with KCachegrind</h2>
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Profiling with perf (Linux)</h1>
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 What is perf?</h2>
 <p><b>perf</b> is a Linux profiling tool that uses sampling-based techniques. It provides:</p><ul>
 <li>A <b>flat profile</b>.</li>
 <li><b>Call graphs</b>.</li>
 <li>Live monitoring (via <code>perf top</code>).</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md35"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 Setup and Usage</h2>
 <ol type="1">
 <li><b>Record Performance Data</b>:<ul>
@@ -289,13 +289,13 @@ Setup and Usage</h2>
 </ul>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md34"></a>
 Installing perf on WSL2</h2>
 <p>Install dependencies (more may be needed): </p><div class="fragment"><div class="line">sudo apt update &amp;&amp; sudo apt install build-essential flex bison libssl-dev libelf-dev bc python3 pahole cpio pkg-config</div>
 </div><!-- fragment --><p>Install perf using <a href="https://stackoverflow.com/a/60276918/3049315">this guide</a>.</p>
 <p>Install the <a href="https://learn.microsoft.com/en-us/community/content/wsl-user-msft-kernel-v6">custom WSL2 kernel</a> if necessary.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md38"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 Debug vs. Release Builds</h1>
 <ul>
 <li><b>Debug Builds</b>: Usually compiled with no optimizations and include extra debug symbols. They are slower and can provide different performance characteristics.</li>
@@ -303,9 +303,9 @@ Debug vs. Release Builds</h1>
 </ul>
 <p>For profiling, always use <b>release builds with debug symbols</b> (<code>-g</code> along with optimization flags) to achieve accurate and useful performance data.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 Integrating Profiling and Benchmarking in CI/CD</h1>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 Current Landscape</h2>
 <ul>
 <li><b>Code Coverage</b>: Tools like Codecov or Coveralls are widely adopted for integrating code coverage data.</li>
@@ -317,7 +317,7 @@ Current Landscape</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 Example in GitHub Actions</h2>
 <p>For instance, you could add a step to run Google Benchmark with JSON output and then use an action to upload the JSON file as an artifact: </p><div class="fragment"><div class="line">- name: Run C++ benchmarks with JSON output</div>
 <div class="line">  working-directory: cpp/build</div>
@@ -330,7 +330,7 @@ Example in GitHub Actions</h2>
 <div class="line">    path: cpp/build/benchmark_results.json</div>
 </div><!-- fragment --><p> This way, while there isn’t a standardized “profiling dashboard” like Codecov, you can still capture and share performance data within your CI/CD workflow.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Conclusion</h1>
 <p>This guide has detailed the following:</p><ul>
 <li><b>gprof</b>: Requires compiling with <code>-pg</code>; good for flat profiles and call graphs.</li>

@@ -115,158 +115,141 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="toc"><h3>Table of Contents</h3>
 <ul><li class="level1"><a href="#autotoc_md1">Table of Contents</a></li>
 <li class="level1"><a href="#autotoc_md2">Overview</a></li>
-<li class="level1"><a href="#autotoc_md3">Directory Structure</a></li>
-<li class="level1"><a href="#autotoc_md4">Getting Started</a><ul><li class="level2"><a href="#autotoc_md5">Prerequisites</a></li>
-<li class="level2"><a href="#autotoc_md6">Installation</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#autotoc_md7">Building and Running</a><ul><li class="level2"><a href="#autotoc_md8">Building the Project</a></li>
-<li class="level2"><a href="#autotoc_md9">Running Tests</a></li>
-<li class="level2"><a href="#autotoc_md10">Running Benchmarks</a></li>
-</ul>
-</li>
-<li class="level1"><a href="#autotoc_md11">Documentation</a></li>
-<li class="level1"><a href="#autotoc_md12">Profiling</a></li>
-<li class="level1"><a href="#autotoc_md13">Continuous Integration (CI/CD)</a></li>
-<li class="level1"><a href="#autotoc_md14">Contributing</a></li>
-<li class="level1"><a href="#autotoc_md15">License</a></li>
+<li class="level1"><a href="#autotoc_md3">Features</a></li>
+<li class="level1"><a href="#autotoc_md4">Directory Structure</a></li>
+<li class="level1"><a href="#autotoc_md5">Prerequisites</a></li>
+<li class="level1"><a href="#autotoc_md6">Installation and Setup</a></li>
+<li class="level1"><a href="#autotoc_md7">Building the Project</a></li>
+<li class="level1"><a href="#autotoc_md8">Running Unit Tests</a></li>
+<li class="level1"><a href="#autotoc_md9">Running Benchmarks</a></li>
+<li class="level1"><a href="#autotoc_md10">Generating Documentation</a></li>
+<li class="level1"><a href="#autotoc_md11">Continuous Integration</a></li>
+<li class="level1"><a href="#autotoc_md12">Contributing</a></li>
+<li class="level1"><a href="#autotoc_md13">License</a></li>
 </ul>
 </div>
 <div class="textblock"><p><a class="anchor" id="md_build_2md__files_2README"></a></p>
-<p><b>CppDSA</b> is a deep dive into data structures and algorithms using C++ and the STL. This project is dedicated to exploring, benchmarking, and profiling the rich set of containers and algorithms provided by the C++ Standard Library. In addition, you'll find detailed documentation and tests to help you understand both the theoretical and practical aspects of these topics.</p>
+<p>CppDSA is a deep dive into C++ data structures and algorithms, with a focus on exploring and benchmarking the components of the C++ Standard Library (STL). This project includes implementations, performance benchmarks, unit tests, profiling examples, and in-depth documentation—all built using modern C++20 and managed with CMake and Conan 2.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Table of Contents</h1>
 <ul>
 <li>Overview</li>
+<li>Features</li>
 <li>Directory Structure</li>
-<li>Getting Started<ul>
 <li>Prerequisites</li>
-<li>Installation</li>
-</ul>
-</li>
-<li>Building and Running<ul>
+<li>Installation and Setup</li>
 <li>Building the Project</li>
-<li>Running Tests</li>
+<li>Running Unit Tests</li>
 <li>Running Benchmarks</li>
-</ul>
-</li>
-<li>Documentation</li>
-<li>Profiling</li>
-<li>Continuous Integration (CI/CD)</li>
+<li>Generating Documentation</li>
+<li>Continuous Integration</li>
 <li>Contributing</li>
 <li>License</li>
-<li>Contact</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Overview</h1>
-<p>CppDSA is a comprehensive project focused on:</p><ul>
-<li><b>STL Data Structures &amp; Algorithms:</b> <br  />
- Detailed implementations, usage guides, and performance comparisons of the C++ Standard Library components.</li>
-<li><b>Benchmarking:</b> <br  />
- Microbenchmarks using Google Benchmark to measure the performance of various container operations and algorithms.</li>
-<li><b>Profiling:</b> <br  />
- Techniques and examples using gprof, Valgrind (Callgrind), and perf to analyze performance bottlenecks.</li>
-<li><b>Documentation:</b> <br  />
- In-depth markdown guides and Doxygen-generated documentation to explain the inner workings and design of STL components.</li>
-<li><b>Testing:</b> <br  />
- A suite of unit tests (using Google Test) to verify the correctness of examples and implementations.</li>
+<p>CppDSA is dedicated to exploring the intricacies of C++ data structures and algorithms. The project covers:</p><ul>
+<li><b>In-depth Documentation:</b> Detailed markdown guides and Doxygen-generated documentation on STL containers, iterators, algorithms, and advanced topics.</li>
+<li><b>Performance Benchmarks:</b> Microbenchmarks using Google Benchmark to measure operations like insertion, deletion, and sorting across various STL containers.</li>
+<li><b>Unit Testing:</b> A comprehensive suite of tests implemented with GoogleTest.</li>
+<li><b>Profiling Examples:</b> Guidance and integration examples for profiling with tools such as gprof, Valgrind (Callgrind), and perf.</li>
+<li><b>Modern C++:</b> Leveraging C++20 features and best practices.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Directory Structure</h1>
-<p>After reorganizing the project, the directory structure is as follows:</p>
-<div class="fragment"><div class="line">CppDSA/</div>
-<div class="line">├── include/         # Header files for implementations</div>
-<div class="line">├── src/             # Source code for data structures, algorithms, and benchmarks</div>
-<div class="line">├── tests/           # Unit tests for the C++ code (Google Test)</div>
-<div class="line">├── docs/            # Documentation (markdown files and Doxygen config)</div>
-<div class="line">├── CMakeLists.txt   # CMake build configuration</div>
-<div class="line">├── .github/         # GitHub Actions workflows for CI/CD</div>
-<div class="line">└── LICENSE          # Project license</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
-Getting Started</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Prerequisites</h2>
+Features</h1>
 <ul>
-<li><b>Compiler:</b> A modern C++ compiler with C++20 support (e.g., GCC 10+, Clang 10+, or MSVC 2019+).</li>
-<li><b>CMake:</b> Version 3.16 or later.</li>
-<li><b>Google Benchmark:</b> Integrated via CMake.</li>
-<li><b>Google Test:</b> For running unit tests.</li>
+<li><b>Comprehensive STL Exploration:</b> Detailed study of containers (e.g., vector, list, deque, map, unordered_map), iterators, and algorithms.</li>
+<li><b>Benchmarking and Profiling:</b> Real-world performance measurement and analysis.</li>
+<li><b>Modular Build System:</b> Configured with CMake and managed via Conan 2.</li>
+<li><b>Unit Tests:</b> Ensuring robustness and correctness of implementations.</li>
+<li><b>Documentation:</b> Both in Markdown and auto-generated via Doxygen.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Directory Structure</h1>
+<div class="fragment"><div class="line">CppDSA/</div>
+<div class="line">├── cmake/                   # Additional CMake modules (e.g., doxygen configuration)</div>
+<div class="line">├── docs/                    # Markdown documentation and Doxygen configuration (Doxyfile)</div>
+<div class="line">├── include/                 # Header files</div>
+<div class="line">├── src/                     # Source code (benchmarks, data structure implementations, algorithms)</div>
+<div class="line">├── tests/                   # Unit tests (GoogleTest)</div>
+<div class="line">├── CMakeLists.txt           # Top-level CMake configuration</div>
+<div class="line">├── conanfile.txt            # Conan configuration for dependencies</div>
+<div class="line">├── CMakePresets.json        # CMake presets (including one for Conan 2)</div>
+<div class="line">└── LICENSE                  # Project license</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Prerequisites</h1>
+<ul>
+<li><b>Compiler:</b> A modern C++ compiler with C++20 support (GCC 10+, Clang 10+, or MSVC 2019+)</li>
+<li><b>CMake:</b> Version 3.16 or later</li>
+<li><b>Conan 2:</b> For dependency management</li>
+<li><b>Python:</b> For installing Conan via pip (Python 3.x)</li>
 <li><b>Optional Tools:</b> <br  />
 <ul>
-<li>Profiling: gprof, Valgrind (Callgrind), perf.</li>
-<li>Documentation: Doxygen.</li>
+<li>Valgrind, gprof, or perf for profiling <br  />
+</li>
+<li>Doxygen for generating HTML documentation</li>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Installation</h2>
-<p>Clone the repository and navigate to the project root:</p>
-<div class="fragment"><div class="line">git clone https://github.com/MangaD/CppDSA.git</div>
-<div class="line">cd CppDSA</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
-Building and Running</h1>
-<h2><a class="anchor" id="autotoc_md8"></a>
-Building the Project</h2>
-<p>The project uses CMake for configuration and building:</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Installation and Setup</h1>
 <ol type="1">
-<li>Create a build directory and configure: <div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
-<div class="line">cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo</div>
+<li><b>Clone the Repository:</b> <div class="fragment"><div class="line">git clone https://github.com/MangaD/CppDSA.git</div>
+<div class="line">cd CppDSA</div>
 </div><!-- fragment --></li>
-<li>Build the project: <div class="fragment"><div class="line">make -j$(nproc)</div>
+<li><b>Install Conan 2 (if not already installed):</b> <div class="fragment"><div class="line">pipx ensurepath</div>
+<div class="line">pipx install conan</div>
+<div class="line">conan profile detect --force</div>
 </div><!-- fragment --></li>
+<li><b>Conan Configuration:</b> Your <code>conanfile.txt</code> should include: <div class="fragment"><div class="line">[requires]</div>
+<div class="line">gtest/1.12.1</div>
+<div class="line">benchmark/1.6.1</div>
+<div class="line"> </div>
+<div class="line">[generators]</div>
+<div class="line">CMakeToolchain</div>
+<div class="line">CMakeDeps</div>
+</div><!-- fragment --> This downloads and configures GoogleTest and Google Benchmark for your project.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Running Tests</h2>
-<p>Unit tests are located in the <code>tests/</code> directory and use Google Test. After building, run:</p>
-<div class="fragment"><div class="line">cd build</div>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Building the Project</h1>
+<div class="fragment"><div class="line">mkdir -p build &amp;&amp; cd build</div>
+<div class="line">conan install .. --build=missing -of . -s build_type=RelWithDebInfo</div>
+<div class="line">cmake .. --preset conan-relwithdebinfo</div>
+<div class="line">cmake --build . --config RelWithDebInfo -- -j$(nproc)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+Running Unit Tests</h1>
+<p>Unit tests are located in the <code>tests/</code> directory and are built with GoogleTest. To run the tests: </p><div class="fragment"><div class="line">cd build</div>
 <div class="line">ctest --output-on-failure</div>
-</div><!-- fragment --><p>Alternatively, run the test executable directly:</p>
-<div class="fragment"><div class="line">./tests/unit_tests</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
-Running Benchmarks</h2>
-<p>Benchmarks are implemented using Google Benchmark. From the build directory, you can run each benchmark executable, for example:</p>
-<div class="fragment"><div class="line">./vector_benchmark</div>
+</div><!-- fragment --><p> Alternatively, run the test executable directly: </p><div class="fragment"><div class="line">./tests/unit_tests</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+Running Benchmarks</h1>
+<p>Benchmark executables (using Google Benchmark) are built in the output directory. From the build directory, run: </p><div class="fragment"><div class="line">./vector_benchmark</div>
 <div class="line">./map_benchmark</div>
 <div class="line">./unordered_map_benchmark</div>
 <div class="line">./deque_benchmark</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
-Documentation</h1>
-<p>Detailed documentation is available in the <code>docs/</code> directory:</p><ul>
-<li><b>Markdown Guides:</b> <br  />
- For instance, <code><a class="el" href="vector_8md.html">docs/vector.md</a></code> provides an in-depth look at <code>std::vector</code>.</li>
-<li><b>Doxygen:</b> <br  />
- A Doxygen configuration file is provided to generate HTML documentation. To generate docs: <div class="fragment"><div class="line">cd docs</div>
-<div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --></li>
+</div><!-- fragment --><p> Each executable measures the performance of various operations on different STL containers.</p>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Generating Documentation</h1>
+<p>Doxygen documentation can be generated with a dedicated CMake target. Once your build is configured: </p><div class="fragment"><div class="line">cmake --build . --target doxygen</div>
+</div><!-- fragment --><p> This command generates HTML documentation under <code>docs/doxygen/html/</code>. Open the <code>index.html</code> file in your browser to view the documentation.</p>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Continuous Integration</h1>
+<p>This project includes a GitHub Actions workflow (see <code>.github/workflows/ci.yml</code>) that:</p><ul>
+<li>Checks out the repository.</li>
+<li>Installs system dependencies (cmake, g++, valgrind, etc.).</li>
+<li>Installs Conan via pip and caches the Conan 2 directory (<code>~/.conan2</code>) and build directory.</li>
+<li>Configures the project using CMake presets and the Conan toolchain file.</li>
+<li>Builds the project, runs unit tests, and executes benchmarks.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md12"></a>
-Profiling</h1>
-<p>Profiling examples and guides are integrated into the project documentation. Use tools such as:</p><ul>
-<li><b>gprof:</b> <br  />
- Compile with <code>-pg</code> to generate profiling data.</li>
-<li><b>Valgrind (Callgrind):</b> <br  />
- Use to generate detailed call graphs.</li>
-<li><b>perf:</b> <br  />
- Use for sampling-based profiling on Linux.</li>
-</ul>
-<p>Refer to the profiling guide in the docs for more details.</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
-Continuous Integration (CI/CD)</h1>
-<p>CI/CD pipelines are set up using GitHub Actions. The workflows in <code>.github/workflows/ci.yml</code> include steps to:</p><ul>
-<li>Build the project.</li>
-<li>Run unit tests.</li>
-<li>Execute benchmarks.</li>
-<li>(Optionally) Archive profiling artifacts.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
 Contributing</h1>
-<p>Contributions are welcome! Please follow these steps:</p><ol type="1">
+<p>Contributions are welcome! To contribute:</p><ol type="1">
 <li>Fork the repository.</li>
 <li>Create a new branch for your feature or bugfix.</li>
-<li>Commit your changes with clear, descriptive messages.</li>
+<li>Follow the coding guidelines and update tests/documentation as needed.</li>
 <li>Submit a pull request for review.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 License</h1>
 <p>This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. </p>
 </div></div><!-- PageDoc -->
