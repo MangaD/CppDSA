@@ -50,28 +50,22 @@ jobs:
 
       - name: Configure CMake
         run: |
-          mkdir -p build && cd build
           # https://github.com/conan-io/conan/issues/4221
-          conan install .. --build=missing -of . -s build_type=RelWithDebInfo
-          #cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
-          #cmake .. --preset conan-release
-          cmake .. --preset conan-relwithdebinfo
+          conan install . --build=missing -s build_type=RelWithDebInfo
+          cmake . --preset conan-relwithdebinfo
 
       - name: Build the project
         run: |
-          cd build
-          #make -j$(nproc)
-          cmake --build . --config RelWithDebInfo -- -j$(nproc)
+          cmake --build build/RelWithDebInfo --config RelWithDebInfo -- -j$(nproc)
 
       - name: Run unit tests
         run: |
-          cd build
-          ctest --output-on-failure
+          ctest --output-on-failure --preset conan-relwithdebinfo
 
       # Calls your executables with `|| true` so that even if one fails the job doesn’t stop.
       - name: Run benchmarks
         run: |
-          cd build
+          cd build/RelWithDebInfo
           echo "Running vector_benchmark"
           ./vector_benchmark || true
           echo "Running map_benchmark"

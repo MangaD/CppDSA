@@ -74,38 +74,29 @@ CppDSA/
    conan profile detect --force
    ```
 
-3. **Conan Configuration:**
-   Your `conanfile.txt` should include:
-   ```ini
-   [requires]
-   gtest/1.12.1
-   benchmark/1.6.1
-
-   [generators]
-   CMakeToolchain
-   CMakeDeps
-   ```
-   This downloads and configures GoogleTest and Google Benchmark for your project.
-
 ## Building the Project
 
    ```bash
+   # Without cmake_layout
    mkdir -p build && cd build
    conan install .. --build=missing -of . -s build_type=RelWithDebInfo
    cmake .. --preset conan-relwithdebinfo
    cmake --build . --config RelWithDebInfo -- -j$(nproc)
+   # With cmake_layout
+   conan install . --build=missing -s build_type=RelWithDebInfo
+   cmake . --preset conan-relwithdebinfo
+   cmake --build build/RelWithDebInfo --config RelWithDebInfo -- -j$(nproc)
    ```
 
 ## Running Unit Tests
 
 Unit tests are located in the `tests/` directory and are built with GoogleTest. To run the tests:
 ```bash
-cd build
-ctest --output-on-failure
+ctest --output-on-failure --preset conan-relwithdebinfo
 ```
 Alternatively, run the test executable directly:
 ```bash
-./tests/unit_tests
+./build/RelWithDebInfo/tests/unit_tests
 ```
 
 ## Running Benchmarks
