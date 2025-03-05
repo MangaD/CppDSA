@@ -217,15 +217,19 @@ Installation and Setup</h1>
 </ol>
 <h1><a class="anchor" id="autotoc_md7"></a>
 Building the Project</h1>
-<div class="fragment"><div class="line">mkdir -p build &amp;&amp; cd build</div>
+<div class="fragment"><div class="line"># Without cmake_layout</div>
+<div class="line">mkdir -p build &amp;&amp; cd build</div>
 <div class="line">conan install .. --build=missing -of . -s build_type=RelWithDebInfo</div>
 <div class="line">cmake .. --preset conan-relwithdebinfo</div>
 <div class="line">cmake --build . --config RelWithDebInfo -- -j$(nproc)</div>
+<div class="line"># With cmake_layout</div>
+<div class="line">conan install . --build=missing -s build_type=RelWithDebInfo</div>
+<div class="line">cmake . --preset conan-relwithdebinfo</div>
+<div class="line">cmake --build build/RelWithDebInfo --config RelWithDebInfo -- -j$(nproc)</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Running Unit Tests</h1>
-<p>Unit tests are located in the <code>tests/</code> directory and are built with GoogleTest. To run the tests: </p><div class="fragment"><div class="line">cd build</div>
-<div class="line">ctest --output-on-failure</div>
-</div><!-- fragment --><p> Alternatively, run the test executable directly: </p><div class="fragment"><div class="line">./tests/unit_tests</div>
+<p>Unit tests are located in the <code>tests/</code> directory and are built with GoogleTest. To run the tests: </p><div class="fragment"><div class="line">ctest --output-on-failure --preset conan-relwithdebinfo</div>
+</div><!-- fragment --><p> Alternatively, run the test executable directly: </p><div class="fragment"><div class="line">./build/RelWithDebInfo/tests/unit_tests</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
 Running Benchmarks</h1>
 <p>Benchmark executables (using Google Benchmark) are built in the output directory. From the build directory, run: </p><div class="fragment"><div class="line">./vector_benchmark</div>
